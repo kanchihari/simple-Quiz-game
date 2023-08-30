@@ -171,8 +171,15 @@ const showScore= () => {
 showQuestions();
 
 nextBtn.addEventListener('click',() => {
-    checkAnswer();
-     
+    const selectedChoice =document.querySelector('.choice.selected');
+    if(!selectedChoice){
+        alert("select your answer")
+    }else{
+        checkAnswer();
+    }
+
+    
+
 });
 
 
