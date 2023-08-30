@@ -43,5 +43,20 @@ body{
     cursor: pointer;
 }
 .choice:hover{
-    background-color: rgb(192, 147, 92);
+    background-color: rgba(80, 122, 236, 0.671);
+}
+.btn{
+    width: 45%;
+    font-size: 20px;
+    padding: 12px 20px;
+    font-weight: 600;
+    margin: 20px auto 0 auto;
+    background-color: rgb(8, 143, 8);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+.btn:hover{
+    background-color: rgba(6, 44, 6, 0.87);
 }
