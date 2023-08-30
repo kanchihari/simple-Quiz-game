@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 const container = document.querySelector('.container'),
-question = document.querySelector('.question'),
-choices = document.querySelector('.choices'),
+questionBox = document.querySelector('.question'),
+choicesBox = document.querySelector('.choices'),
 nextBtn = document.querySelector('.next-btn');
 
 // make array of objects and store quiz qusetion,choices of question and answer in it.
@@ -100,17 +100,25 @@ const quiz=[
         Answer: " / This is a comment /",
     },
 ];
+//Add a variable to show the currentQuestion index.
+let currentQuestionIndex = 0; 
 
 //Arrow Function to show questions
 const showQuestions = () =>{
-    console.log("Question");
+    //console.log("Question");
+    const questionDetails = quiz[currentQuestionIndex];
+    questionBox.textContent = questionDetails.question;
+        choicesBox.textContent ="";
+    for(let i=0;i<questionDetails.choices.length;i++){
+        const currentchoice=questionDetails.choices[i];
+        const choiceDiv = document.createElement('div');
+        choiceDiv.textContent=currentchoice;
+        choicesBox.appendChild(choiceDiv);
+    }
 }
-
-// Adding eventlistener to next button
+ showQuestions();
 nextBtn.addEventListener('click',() => {
-    //Adding a showQuestions function
-    showQuestions();
-    return false; 
+    
 });
 
 
