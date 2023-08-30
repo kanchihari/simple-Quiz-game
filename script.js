@@ -161,7 +161,11 @@ const checkAnswer = () => {
 
 //function to showScore
 const showScore= () => {
+    // remove questionBox and choicesbox before displaying the scorecard.
+    questionBox.textContent = "";
+    choicesBox.textContent = "";
     scoreCard.textContent = `You Scored ${score} out of ${quiz.length}`
+    nextBtn.textContent = "Play Again";
 }
 
 showQuestions();
