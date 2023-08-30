@@ -107,18 +107,31 @@ let currentQuestionIndex = 0;
 const showQuestions = () =>{
     //console.log("Question");
     const questionDetails = quiz[currentQuestionIndex];
+
+    // Set the text content of the 'questionBox' element to the current question.
     questionBox.textContent = questionDetails.question;
+
+    // Clear any previous choices from the 'choicesBox' element
         choicesBox.textContent ="";
+
+    // Loop through each choice in the current question's choices array
     for(let i=0;i<questionDetails.choices.length;i++){
         const currentchoice=questionDetails.choices[i];
+
+    // Set the text content of the 'questionBox' element to the current question.
         const choiceDiv = document.createElement('div');
         choiceDiv.textContent=currentchoice;
+        choiceDiv.classList.add('choice');
         choicesBox.appendChild(choiceDiv);
     }
 }
- showQuestions();
+showQuestions();
+
 nextBtn.addEventListener('click',() => {
-    
+     if(currentQuestionIndex < quiz.length){
+        currentQuestionIndex ++;
+        showQuestions();
+     }
 });
 
 

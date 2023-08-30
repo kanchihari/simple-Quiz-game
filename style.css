@@ -11,3 +11,26 @@ body{
     display: grid;
     place-items: center;
 }
+.container{
+    width: 80%;
+    max-width: 850px;
+    padding: 30px;
+    text-align: center;
+
+}
+.container h1{
+    font-size: 36px;
+    margin-bottom: 40px;
+    text-decoration: underline;
+    text-underline-offset: 8px;
+}
+.container .question{
+    font-size: 26px;
+    margin-top: 20px;
+}
+.container .choices{
+    margin-top: 20px;
+}
+.choice{
+    font-size: 20px;
+}
