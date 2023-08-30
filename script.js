@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
 const container = document.querySelector('.container'),
 questionBox = document.querySelector('.question'),
 choicesBox = document.querySelector('.choices'),
-nextBtn = document.querySelector('.next-btn');
+nextBtn = document.querySelector('.next-btn'),
+scoreCard = document.querySelector('.scoreCard');
 
 // make array of objects and store quiz qusetion,choices of question and answer in it.
 
@@ -102,6 +103,7 @@ const quiz=[
 ];
 //Add a variable to show the currentQuestion index.
 let currentQuestionIndex = 0; 
+let score= 0;
 
 //Arrow Function to show questions
 const showQuestions = () =>{
@@ -143,21 +145,30 @@ const checkAnswer = () => {
     const selectedChoice = document.querySelector('.choice.selected');
     if(selectedChoice.textContent === quiz[currentQuestionIndex].Answer){
         alert("correct Answer");
+        score++;
     }
     else{
         alert("worng answer")
     }
-    //console.log(selectedChoice);
+    currentQuestionIndex ++;
+    if(currentQuestionIndex < quiz.length){
+        showQuestions();
+     }
+     else{
+        showScore();
+     }
+}
+
+//function to showScore
+const showScore= () => {
+    scoreCard.textContent = `You Scored ${score} out of ${quiz.length}`
 }
 
 showQuestions();
 
 nextBtn.addEventListener('click',() => {
     checkAnswer();
-     if(currentQuestionIndex < quiz.length){
-        currentQuestionIndex ++;
-        showQuestions();
-     }
+     
 });
 
 
