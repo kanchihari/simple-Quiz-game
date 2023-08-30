@@ -105,7 +105,7 @@ let currentQuestionIndex = 0;
 
 //Arrow Function to show questions
 const showQuestions = () =>{
-    //console.log("Question");
+
     const questionDetails = quiz[currentQuestionIndex];
 
     // Set the text content of the 'questionBox' element to the current question.
@@ -124,19 +124,36 @@ const showQuestions = () =>{
         choiceDiv.classList.add('choice');
         choicesBox.appendChild(choiceDiv);
 
+    // Add a click event listener to each choice element ('choiceDiv')
         choiceDiv.addEventListener('click',() =>{
             if(choiceDiv.classList.contains('selected')){
+                 // If it's selected, remove the 'selected' class to deselect the choice
                 choiceDiv.classList.remove('selected');
             }
             else{
                 choiceDiv.classList.add('selected');
+                 // If it's not selected, add the 'selected' class to mark it as selected
             }
         })
     }
 }
+
+// Function to check answers
+const checkAnswer = () => {
+    const selectedChoice = document.querySelector('.choice.selected');
+    if(selectedChoice.textContent === quiz[currentQuestionIndex].Answer){
+        alert("correct Answer");
+    }
+    else{
+        alert("worng answer")
+    }
+    //console.log(selectedChoice);
+}
+
 showQuestions();
 
 nextBtn.addEventListener('click',() => {
+    checkAnswer();
      if(currentQuestionIndex < quiz.length){
         currentQuestionIndex ++;
         showQuestions();
