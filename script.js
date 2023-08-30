@@ -15,14 +15,13 @@ const quiz=[
         choices: [" Hyper Transfer Markup Language",
             " Hyper Text Makeup Language",
             " Hyper Text Markup Language",
-            " High Text Markup Language"],
+            " High Transport Mark Language"],
         Answer: " Hyper Text Markup Language",
     },
     {
         question :"Q. Which HTML tag is used to create a paragraph?",
         // store choices in array
-        choices: [" Hyper Transfer Markup Language",
-            " <p>",
+        choices: [ " <p>",
             " <par>",
             " <para> ",
             "<paragraph>"],
@@ -33,7 +32,7 @@ const quiz=[
         // store choices in array
         choices: [" To specify character encoding and viewport settings",
             " To create a hyperlink ",
-            " To create a hyperlink",
+            " To create a emmit",
             " To format text as bold"],
         Answer: " To specify character encoding and viewport settings",
     },
@@ -104,6 +103,7 @@ const quiz=[
 //Add a variable to show the currentQuestion index.
 let currentQuestionIndex = 0; 
 let score= 0;
+let quizOver = false;
 
 //Arrow Function to show questions
 const showQuestions = () =>{
@@ -156,6 +156,7 @@ const checkAnswer = () => {
      }
      else{
         showScore();
+        quizOver = true;
      }
 }
 
@@ -164,17 +165,29 @@ const showScore= () => {
     // remove questionBox and choicesbox before displaying the scorecard.
     questionBox.textContent = "";
     choicesBox.textContent = "";
-    scoreCard.textContent = `You Scored ${score} out of ${quiz.length}`
+    scoreCard.textContent = `You Scored ${score} out of ${quiz.length}!`
     nextBtn.textContent = "Play Again";
 }
 
 showQuestions();
 
+// Add a click event listener to the 'Next' button
 nextBtn.addEventListener('click',() => {
     const selectedChoice =document.querySelector('.choice.selected');
-    if(!selectedChoice){
+    
+     // Check if no choice is selected and the button text is 'Next'
+    if(!selectedChoice && nextBtn.textContent === "Next"){
         alert("select your answer")
-    }else{
+    }
+    if(quizOver){
+            currentQuestionIndex = 0;
+            nextBtn.textContent = "Next";
+            scoreCard.textContent ="";
+            showQuestions();
+            quizOver = false;
+            score = 0;
+    }
+    else{
         checkAnswer();
     }
 
