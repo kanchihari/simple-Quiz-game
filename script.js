@@ -123,6 +123,15 @@ const showQuestions = () =>{
         choiceDiv.textContent=currentchoice;
         choiceDiv.classList.add('choice');
         choicesBox.appendChild(choiceDiv);
+
+        choiceDiv.addEventListener('click',() =>{
+            if(choiceDiv.classList.contains('selected')){
+                choiceDiv.classList.remove('selected');
+            }
+            else{
+                choiceDiv.classList.add('selected');
+            }
+        })
     }
 }
 showQuestions();
