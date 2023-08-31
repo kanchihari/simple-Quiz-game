@@ -90,4 +90,21 @@ h1{
     color: #fff;
 
 }
+.timer{
+    position: absolute;
+    top:20px;
+    right: 20px;
+    width: 72px;
+    height: 72px;
+    font-size: 24px;
+    font-weight: 600;
+    border-radius: 50%;
+    background-color: #08203e;
+    border:2px solid #f00;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#fff;
+}
 
