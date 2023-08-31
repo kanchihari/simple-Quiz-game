@@ -242,7 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     currentQuestionIndex =0;
     showQuestions();
-  }
+  };
 
   //Adding Eventlister to startButton
   startButton.addEventListener("click", () => {
