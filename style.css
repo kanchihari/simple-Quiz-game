@@ -7,9 +7,11 @@
 body{
     width: 100%;
     height: 100vh;
-    background: linear-gradient(to right bottom,#77d3f7b4,#06abec);
     display: grid;
     place-items: center;
+    background-image: url(image/background-image.jpg);
+    background-size: cover;
+    background-position: center;
 }
 h1{
     color: #fff;
@@ -32,6 +34,7 @@ h1{
 .container .question{
     font-size: 26px;
     margin-top: 20px;
+    color: #fff;
 }
 .container .choices{
     margin-top: 20px;
@@ -60,14 +63,14 @@ h1{
     padding: 12px 20px;
     font-weight: 600;
     margin: 20px auto 0 auto;
-    background-color: rgb(8, 143, 8);
+    background-color: rgba(35, 133, 11, 0.89);
     border: none;
     border-radius: 5px;
     color: #fff;
     cursor: pointer;
 }
 .btn:hover{
-    background-color: rgba(6, 44, 6, 0.87);
+    background-color: rgba(54, 245, 47, 0.932);
 }
 .start-btn{
     width: 15%;
@@ -84,6 +87,7 @@ h1{
 .scoreCard{
     font-size: 25px;
     margin-top: 20px;
+    color: #fff;
 }
 .alert{
     background-color: #5d9b63;
@@ -138,25 +142,64 @@ h1{
     }
 }
 
+/* Media queries for responsiveness */
 
-@media screen and(max-width: 900px) {
-    .container{
-        width: 100%;
-        margin-top: 50px;
+/* Mobile screens */
+@media screen and (max-width: 600px) {
+    .container h1 {
+        font-size: 28px;
     }
-    .container h1{
-        font-size: 24px;
-    }
-    .container .question{
+    .container .question {
         font-size: 22px;
     }
-    .timer{
-        width:50px;
-        height: 50px;
-        font-size: 20px;
+    .choice {
+        width: 80%;
+        font-size: 18px;
     }
-    .start-btn{
-        width: 50%;
+    .start-btn {
+        width: 40%;
+    }
+    .timer{
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
     }
 }
+
+/* Tablet screens */
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+    .container h1 {
+        font-size: 32px;
+    }
+    .container .question {
+        font-size: 24px;
+    }
+    .choice {
+        width: 70%;
+        font-size: 20px;
+    }
+    .start-btn {
+        width: 30%;
+    }
+}
+
+/* Laptop screens */
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+    .container h1 {
+        font-size: 36px;
+    }
+    .container .question {
+        font-size: 26px;
+    }
+    /* Keep default styles for choice and start-btn */
+}
+
+/* Larger screens */
+@media screen and (min-width: 1441px) {
+    /* Keep default styles for container, h1, and other elements */
+}
+
+
+
+
 
