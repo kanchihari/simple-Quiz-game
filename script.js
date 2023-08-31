@@ -4,6 +4,7 @@ questionBox = document.querySelector('.question'),
 choicesBox = document.querySelector('.choices'),
 nextBtn = document.querySelector('.next-btn'),
 scoreCard = document.querySelector('.scoreCard'),
+startButton = document.querySelector('.start-btn'),
 alert=document.querySelector(".alert");
 
 // make array of objects and store quiz qusetion,choices of question and answer in it.
@@ -151,7 +152,7 @@ const checkAnswer = () => {
     }
     else{
         //alert("worng answer")
-        displayAlert("Oops Worng Answer :-(");
+        displayAlert(`Oops Worng Answer :-( !  "  ( ${quiz[currentQuestionIndex].Answer} ) "is the correct answer`);
     }
     currentQuestionIndex ++;
     if(currentQuestionIndex < quiz.length){
@@ -176,9 +177,20 @@ const showScore= () => {
 const displayAlert =(msg) =>{
     alert.style.display ="block";
     alert.textContent= msg;
+    setTimeout(( )=> {
+        alert.style.display ="none";
+    },2000);
+    
 }
 
-showQuestions();
+//Adding Eventlister to startButton
+startButton.addEventListener('click',() =>{
+    startButton.style.display ="none";
+    container.style.display ="block";
+    showQuestions();
+})
+
+
 
 // Add a click event listener to the 'Next' button
 nextBtn.addEventListener('click',() => {
