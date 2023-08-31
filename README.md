@@ -115,7 +115,7 @@ The live link can be found here: [click to view site](https://kanchihari.github.
 ## Credits
 * Content
     - The code to make footer,header and singup form is take from the [Love Maths Walkthrough Project]() project.
-    - For timer function is taken from the [w3schools](www.W3schools.com)slackoverflow and chatgpt.
+    - For timer function is taken from the [w3schools](www.W3schools.com),[stackoverflow](www.stackoverflow) and [chatgpt](www.chatgpt).
 
  Media
     - The image used for backgroung are taken from [unsplash.com](https://unsplash.com/).
