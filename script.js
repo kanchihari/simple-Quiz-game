@@ -174,9 +174,6 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       showScore();
       stopTimer();
-      //
-      quizOver = true;
-      timer.style.display = "none";
     }
   };
 
@@ -208,11 +205,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const stopTimer = () => {
     clearInterval(timerID);
   };
-
+// function to startQuiz
   const startQuiz = () => {
     timeLeft=15;
     timer.style.display = "flex";
-    showQuestions();
+    shufflequestions();
   };
 
   //function to showScore
@@ -223,6 +220,8 @@ document.addEventListener("DOMContentLoaded", () => {
     displayAlert("You have completed the Quiz!");
     scoreCard.textContent = `You Scored ${score} out of ${quiz.length}!`;
     nextBtn.textContent = "Play Again";
+    quizOver=true;
+    timer.style.display = "none";
   };
 
   //Creating a Alert Function
@@ -233,6 +232,17 @@ document.addEventListener("DOMContentLoaded", () => {
       alert.style.display = "none";
     }, 2000);
   };
+
+  //function to shuffle questions.
+  const shufflequestions =() => {
+    for(let i=quiz.length-1; i>0; i--){
+      const j = Math.floor(Math.random() * (i+1));
+      [quiz[i],quiz[j]] = [quiz[j], quiz[i]];
+
+    }
+    currentQuestionIndex =0;
+    showQuestions();
+  }
 
   //Adding Eventlister to startButton
   startButton.addEventListener("click", () => {
@@ -255,9 +265,9 @@ document.addEventListener("DOMContentLoaded", () => {
       currentQuestionIndex = 0;
       nextBtn.textContent = "Next";
       scoreCard.textContent = "";
-      showQuestions();
       quizOver = false;
       score = 0;
+      startQuiz();
     } else {
       checkAnswer();
     }
