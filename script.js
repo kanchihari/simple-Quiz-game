@@ -3,7 +3,8 @@ const container = document.querySelector('.container'),
 questionBox = document.querySelector('.question'),
 choicesBox = document.querySelector('.choices'),
 nextBtn = document.querySelector('.next-btn'),
-scoreCard = document.querySelector('.scoreCard');
+scoreCard = document.querySelector('.scoreCard'),
+alert=document.querySelector(".alert");
 
 // make array of objects and store quiz qusetion,choices of question and answer in it.
 
@@ -144,11 +145,13 @@ const showQuestions = () =>{
 const checkAnswer = () => {
     const selectedChoice = document.querySelector('.choice.selected');
     if(selectedChoice.textContent === quiz[currentQuestionIndex].Answer){
-        alert("correct Answer");
+        //alert("correct Answer");
+        displayAlert("correct Answer :-)");
         score++;
     }
     else{
-        alert("worng answer")
+        //alert("worng answer")
+        displayAlert("Oops Worng Answer :-(");
     }
     currentQuestionIndex ++;
     if(currentQuestionIndex < quiz.length){
@@ -165,8 +168,14 @@ const showScore= () => {
     // remove questionBox and choicesbox before displaying the scorecard.
     questionBox.textContent = "";
     choicesBox.textContent = "";
+    displayAlert("You have completed the Quiz!");
     scoreCard.textContent = `You Scored ${score} out of ${quiz.length}!`
     nextBtn.textContent = "Play Again";
+}
+//Creating a Alert Function
+const displayAlert =(msg) =>{
+    alert.style.display ="block";
+    alert.textContent= msg;
 }
 
 showQuestions();
@@ -174,10 +183,12 @@ showQuestions();
 // Add a click event listener to the 'Next' button
 nextBtn.addEventListener('click',() => {
     const selectedChoice =document.querySelector('.choice.selected');
-    
+
      // Check if no choice is selected and the button text is 'Next'
     if(!selectedChoice && nextBtn.textContent === "Next"){
-        alert("select your answer")
+        //alert("select your answer")
+        displayAlert("Please Select Your Answer");
+        return;
     }
     if(quizOver){
             currentQuestionIndex = 0;
@@ -189,10 +200,7 @@ nextBtn.addEventListener('click',() => {
     }
     else{
         checkAnswer();
-    }
-
-    
-
+    }  
 });
 
 
