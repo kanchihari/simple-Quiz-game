@@ -9,7 +9,7 @@ This project is a web-based quiz game that presents users with multiple-choice q
 
 ## Features
 
-* StatrBtn
+* Homepage
 * quiz
 * Timer
 * Questions
@@ -17,21 +17,28 @@ This project is a web-based quiz game that presents users with multiple-choice q
 * ScoreCard
 
  ### Homepage :
+
  The Home page contains a Start Button where the User can do click and hover operations on it.Once Start button is clicked,it takes user to the quiz page.
- ![Home-page](./assets/images/home-page.png)
+
+ ![Home-page](./image/homepage-view.png)
 
 * Homepage background image:
+
 ![Background-Image](./image/background-image.jpg)
 
 ### Quiz :
+
 The Quiz page appears once the user clicks on the start-button.The Quiz page contains a header saying that Lets play a simple Quiz,
 displays question with multiple choices where user can select one or more answers by clicking on them.
+
 ![Quiz-page](./image/quizpage.png)
 
 ### Timer:
+
 The User once starts the quiz,he or she will be provided with question and multiple choices,where each question is given a time limit time of 15 seconds,timer starts countdown from the movement quiz is started.timer is having animation of pulse where user can have easy note on time for the question.
 
 * timer image:
+
 ![timer Image](./image/timer-image.png)
 
 ### Qusetions :
@@ -41,6 +48,7 @@ The question section contains  10 questions with multiple choices and everytime 
 ![QuestionImage](./image/questions%20-image.png)
 
 ### Alert :
+
 The Alert message used here is customized.
 Alert message is shown when the user attempts to  move to next question with out selecting any answer, when the selected answer is correct or wrong and when user runs out of time there will be a default user confirmation alert asking user either wants to continue the quiz or to cancel quiz game.when the user clicks okay button the quiz game starts,if user clicks on the cancel button user will be navigated to startpage or Homepage.
 
@@ -52,14 +60,17 @@ Alert message is shown when the user attempts to  move to next question with out
 
 ![wrong-answer](./image/wrong-answer-alert.png)
 
-* When user doesnot select any answer and tries to go for next question, an alert message will pop up asking to select answer. 
+* When user doesnot select any answer and tries to go for next question, an alert message will pop up asking to select answer.
+
 ![select-answer](./image/select-answer-alert.png)
 
 * when user runs out of time a default user confirmation alert popups 
+
 ![default-message](./image/default-message.png)
 
 ### Scorecard :
 Scored shows Quiz result and contains a play Again button,if user clicks play again button the quiz will restarted.
+
 ![scorecard-image](./image/Scorecard.png) 
 
 ## Testing :
