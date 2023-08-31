@@ -1,10 +1,11 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-body{
+
+body {
     width: 100%;
     height: 100vh;
     display: grid;
@@ -13,11 +14,9 @@ body{
     background-size: cover;
     background-position: center;
 }
-h1{
-    color: #fff;
-    text-align: center;
-}
-.container{
+
+
+.container {
     width: 80%;
     max-width: 850px;
     padding: 30px;
@@ -25,24 +24,28 @@ h1{
     display: none;
 }
 
-.container h1{
+.container h1 {
     font-size: 36px;
     margin-bottom: 40px;
     text-decoration: underline;
     text-underline-offset: 8px;
+    color: #fff;
 }
-.container .question{
+
+.container .question {
     font-size: 26px;
     margin-top: 20px;
     color: #fff;
 }
-.container .choices{
+
+.container .choices {
     margin-top: 20px;
 }
-.choice{
+
+.choice {
     font-size: 20px;
-    background-color: antiquewhite;
-    color: black;
+    background-color: #eee;
+    color: #000;
     margin: 10px auto;
     padding: 10px;
     border-radius: 5px;
@@ -52,71 +55,75 @@ h1{
     opacity: 0;
     transform: translateY(50%);
     animation: fade-in 0.5s ease forwards;
-
 }
+
 .choice:hover{
     background-color: #ddd;
 }
+
+.choice.selected{
+    background-color: #007bff;
+    color: #fff;
+}
+
 .btn{
-    width: 45%;
+    width: 60%;
     font-size: 20px;
-    padding: 12px 20px;
     font-weight: 600;
+    padding: 12px 20px;
     margin: 20px auto 0 auto;
-    background-color: rgba(35, 133, 11, 0.89);
+    background-color:  rgba(35, 133, 11, 0.89);
+    color: #fff;
     border: none;
     border-radius: 5px;
-    color: #fff;
     cursor: pointer;
 }
+
 .btn:hover{
     background-color: rgba(54, 245, 47, 0.932);
 }
-.start-btn{
-    width: 15%;
-    padding-block: 20px;
-    text-align:center;
-
-    
-}
-.choice.selected{
-    background-color: #007bff;
-    color:#fff
-}
 
 .scoreCard{
-    font-size: 25px;
+    font-size: 24px;
     margin-top: 20px;
     color: #fff;
 }
+
 .alert{
     background-color: #5d9b63;
     border-radius: 5px;
-    width:100%;
+    width: 100%;
     padding: 12px;
     position: absolute;
     top: 0;
     display: none;
-    color: #fff;
-
 }
+
+.startBtn{
+    width: 15%;
+    padding-block: 20px;
+    text-align: center;
+}
+
 .timer{
     position: absolute;
-    top:20px;
+    top: 20px;
     right: 20px;
     width: 72px;
     height: 72px;
-    font-size: 24px;
-    font-weight: 600;
     border-radius: 50%;
     background-color: #08203e;
-    border:2px solid #f00;
+    border: 2px solid #f00;
+    font-size: 24px;
+    font-weight: 600;
     padding: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color:#fff;
+    animation: pulse 1s ease-in-out infinite;
+    color: #fff;
 }
+
 /* Adding Animation to Timer */
 @keyframes pulse{
     0%{
@@ -141,7 +148,7 @@ h1{
         transform: translateY(0);
     }
 }
-
+    
 /* Media queries for responsiveness */
 
 /* Mobile screens */
@@ -156,7 +163,7 @@ h1{
         width: 80%;
         font-size: 18px;
     }
-    .start-btn {
+    .startBtn {
         width: 40%;
     }
     .timer{
@@ -178,7 +185,7 @@ h1{
         width: 70%;
         font-size: 20px;
     }
-    .start-btn {
+    .startBtn {
         width: 30%;
     }
 }
@@ -198,8 +205,4 @@ h1{
 @media screen and (min-width: 1441px) {
     /* Keep default styles for container, h1, and other elements */
 }
-
-
-
-
 

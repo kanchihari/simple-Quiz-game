@@ -1,15 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const container = document.querySelector(".container"),
-    questionBox = document.querySelector(".question"),
-    choicesBox = document.querySelector(".choices"),
-    nextBtn = document.querySelector(".next-btn"),
-    scoreCard = document.querySelector(".scoreCard"),
-    startButton = document.querySelector(".start-btn"),
-    timer = document.querySelector(".timer"),
-    alert = document.querySelector(".alert");
-
-  // make array of objects and store quiz qusetion,choices of question and answer in it.
-
+  const container = document.querySelector('.container');
+  const questionBox = document.querySelector('.question');
+  const choicesBox = document.querySelector('.choices');
+  const nextBtn = document.querySelector('.nextBtn');
+  const scoreCard = document.querySelector('.scoreCard');
+  const alert = document.querySelector('.alert');
+  const startBtn = document.querySelector('.startBtn');
+  const timer = document.querySelector('.timer');
+  
+  
+  // Make an array of objects that stores question, choices of question and answer
   const quiz = [
     {
       question: "Q. What does HTML stand for?",
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
       question: "Q. How can you include comments within a CSS file?",
       // store choices in array
       choices: [
-        " // This is a comment",
+        " / This is a comment /",
         " /* This is a comment */",
         " # This is a comment",
         " <!-- This is a comment -->",
@@ -110,167 +110,156 @@ document.addEventListener("DOMContentLoaded", () => {
       Answer: " / This is a comment /",
     },
   ];
-  //Add a variable to show the currentQuestion index.
+  
+  // Making Variables
   let currentQuestionIndex = 0;
   let score = 0;
   let quizOver = false;
   let timeLeft = 15;
   let timerID = null;
-
-  //Arrow Function to show questions
+  
+  // Arrow Function to Show Questions
   const showQuestions = () => {
-    const questionDetails = quiz[currentQuestionIndex];
-
-    // Set the text content of the 'questionBox' element to the current question.
-    questionBox.textContent = questionDetails.question;
-
-    // Clear any previous choices from the 'choicesBox' element
-    choicesBox.textContent = "";
-
-    // Loop through each choice in the current question's choices array
-    for (let i = 0; i < questionDetails.choices.length; i++) {
-      const currentchoice = questionDetails.choices[i];
-
-      // Set the text content of the 'questionBox' element to the current question.
-      const choiceDiv = document.createElement("div");
-      choiceDiv.textContent = currentchoice;
-      choiceDiv.classList.add("choice");
-      choicesBox.appendChild(choiceDiv);
-
-      // Add a click event listener to each choice element ('choiceDiv')
-      choiceDiv.addEventListener("click", () => {
-        if (choiceDiv.classList.contains("selected")) {
-          // If it's selected, remove the 'selected' class to deselect the choice
-          choiceDiv.classList.remove("selected");
-        } else {
-          choiceDiv.classList.add("selected");
-          // If it's not selected, add the 'selected' class to mark it as selected
-        }
-      });
-    }
-
-    if (currentQuestionIndex < quiz.length) {
-      startTimer();
-    }
+      const questionDetails = quiz[currentQuestionIndex];
+      questionBox.textContent = questionDetails.question;
+  
+      choicesBox.textContent = "";
+      for (let i = 0; i < questionDetails.choices.length; i++) {
+          const currentChoice = questionDetails.choices[i];
+          const choiceDiv = document.createElement('div');
+          choiceDiv.textContent = currentChoice;
+          choiceDiv.classList.add('choice');
+          choicesBox.appendChild(choiceDiv);
+  
+          choiceDiv.addEventListener('click', () => {
+              if (choiceDiv.classList.contains('selected')) {
+                  choiceDiv.classList.remove('selected');
+              }
+              else {
+                  choiceDiv.classList.add('selected');
+              }
+          });
+      }
+  
+      if(currentQuestionIndex < quiz.length){
+          startTimer();
+      }
   };
-
+  
   // Function to check answers
   const checkAnswer = () => {
-    const selectedChoice = document.querySelector(".choice.selected");
-    if (selectedChoice.textContent === quiz[currentQuestionIndex].Answer) {
-      //alert("correct Answer");
-      displayAlert("correct Answer :-)");
-      score++;
-    } else {
-      //alert("worng answer")
-      displayAlert(
-        `Oops Worng Answer :-( !  "  ( ${quiz[currentQuestionIndex].Answer} ) "is the correct answer`
-      );
-    }
-    timeLeft = 15;
-    currentQuestionIndex++;
-    if (currentQuestionIndex < quiz.length) {
-      showQuestions();
-    } else {
-      showScore();
-      stopTimer();
-    }
-  };
-
-  // Function start timer
-  const startTimer = () => {
-    clearInterval(timerID);// check for any exist timers.
-    timer.textContent = timeLeft; 
-
-    const countDown = () => {
-      timeLeft--;
-      timer.textContent = timeLeft;
-
-      if (timeLeft === 0) {
-        const confirmUser = confirm("Time UP!!  Do you want to play the quiz again");
-        if (confirmUser) {
-          timeLeft = 15;
-          startQuiz();
-        } else {
-          startButton.style.display = "block";
-          container.style.display = "none";
-          return;
-        }
+      const selectedChoice = document.querySelector('.choice.selected');
+      if (selectedChoice.textContent === quiz[currentQuestionIndex].Answer) {
+          // alert("Correct Answer!");
+          displayAlert("Correct Answer!");
+          score++;
       }
-    };
-    timerID = setInterval(countDown, 1000);
+      else {
+          // alert("Wrong answer");
+          displayAlert(`Wrong Answer! ${quiz[currentQuestionIndex].Answer} is the Correct Answer`);
+      }
+      timeLeft = 15;
+      currentQuestionIndex++;
+      if (currentQuestionIndex < quiz.length) {
+          showQuestions();
+      }
+      else {
+          stopTimer();
+          showScore();
+      }
   };
-
-  //Funtion to stop timer
-  const stopTimer = () => {
-    clearInterval(timerID);
-  };
-// function to startQuiz
-  const startQuiz = () => {
-    timeLeft=15;
-    timer.style.display = "flex";
-    shufflequestions();
-  };
-
-  //function to showScore
+  
+  // Function to show score
   const showScore = () => {
-    // remove questionBox and choicesbox before displaying the scorecard.
-    questionBox.textContent = "";
-    choicesBox.textContent = "";
-    displayAlert("You have completed the Quiz!");
-    scoreCard.textContent = `You Scored ${score} out of ${quiz.length}!`;
-    nextBtn.textContent = "Play Again";
-    quizOver=true;
-    timer.style.display = "none";
+      questionBox.textContent = "";
+      choicesBox.textContent = "";
+      scoreCard.textContent = `You Scored ${score} out of ${quiz.length}!`;
+      displayAlert("You have completed this quiz!");
+      nextBtn.textContent = "Play Again";
+      quizOver = true;
+      timer.style.display = "none";
   };
-
-  //Creating a Alert Function
+  
+  // Function to Show Alert
   const displayAlert = (msg) => {
-    alert.style.display = "block";
-    alert.textContent = msg;
-    setTimeout(() => {
-      alert.style.display = "none";
-    }, 2000);
+      alert.style.display = "block";
+      alert.textContent = msg;
+      setTimeout(()=>{
+          alert.style.display = "none";
+      }, 2000);
   };
-
-  //function to shuffle questions.
-  const shufflequestions =() => {
-    for(let i=quiz.length-1; i>0; i--){
-      const j = Math.floor(Math.random() * (i+1));
-      [quiz[i],quiz[j]] = [quiz[j], quiz[i]];
-
-    }
-    currentQuestionIndex =0;
-    showQuestions();
-  };
-
-  //Adding Eventlister to startButton
-  startButton.addEventListener("click", () => {
-    startButton.style.display = "none";
-    container.style.display = "block";
-    showQuestions();
-  });
-
-  // Add a click event listener to the 'Next' button
-  nextBtn.addEventListener("click", () => {
-    const selectedChoice = document.querySelector(".choice.selected");
-
-    // Check if no choice is selected and the button text is 'Next'
-    if (!selectedChoice && nextBtn.textContent === "Next") {
-      //alert("select your answer")
-      displayAlert("Please Select Your Answer");
-      return;
-    }
-    if (quizOver) {
+  
+  // Function to Start Timer
+  const startTimer = () => {
+      clearInterval(timerID); // Check for any exist timers
+      timer.textContent = timeLeft;
+  
+      const countDown = ()=>{
+          timeLeft--;
+          timer.textContent = timeLeft;
+          if(timeLeft === 0){
+              const confirmUser = confirm("Time Up!!! Do you want to play the quiz again");
+              if(confirmUser){
+                  timeLeft = 15;
+                  startQuiz();
+              }
+              else{
+                  startBtn.style.display = "block";
+                  container.style.display = "none";
+                  return;
+              }
+          }
+      }
+      timerID = setInterval(countDown, 1000);
+  }
+  
+  // Function to Stop Timer
+  const stopTimer = () =>{
+      clearInterval(timerID);
+  }
+  
+  // Function to shuffle question
+  const shuffleQuestions = () =>{
+      for(let i=quiz.length-1; i>0; i--){
+          const j = Math.floor(Math.random() * (i+1));
+          [quiz[i], quiz[j]] = [quiz[j], quiz[i]];
+      }
       currentQuestionIndex = 0;
-      nextBtn.textContent = "Next";
-      scoreCard.textContent = "";
-      quizOver = false;
-      score = 0;
+      showQuestions();
+  }
+  
+  // Function to Start Quiz
+  const startQuiz = () =>{
+      timeLeft = 15;
+      timer.style.display = "flex";
+      shuffleQuestions();
+  }
+  
+  // Adding Event Listener to Start Button
+  startBtn.addEventListener('click', ()=>{
+      startBtn.style.display = "none";
+      container.style.display = "block";
       startQuiz();
-    } else {
-      checkAnswer();
-    }
+  });
+  
+  nextBtn.addEventListener('click', () => {
+      const selectedChoice = document.querySelector('.choice.selected');
+      if (!selectedChoice && nextBtn.textContent === "Next") {
+          // alert("Select your answer");
+          displayAlert("Select your answer");
+          return;
+      }
+      if (quizOver) {
+          nextBtn.textContent = "Next";
+          scoreCard.textContent = "";
+          currentQuestionIndex = 0;
+          quizOver = false;
+          score = 0;
+          startQuiz();
+      }
+      else {
+          checkAnswer();
+      }
   });
 
 
